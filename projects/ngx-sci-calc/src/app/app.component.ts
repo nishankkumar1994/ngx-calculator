@@ -10,15 +10,14 @@ export class AppComponent {
   isOpen=false;
   isFixedOpen=false;
   openInlineCalc() {
+    this.isFixedOpen = false;
     this.isOpen = true;
   }
-  closeInlineCalc() {
-    this.isOpen = false;
-  }
   openFixedCalc() {
+    this.isOpen = true;
     this.isFixedOpen = true;
   }
-  closeFixedCalc() {
-    this.isFixedOpen = false;
+  closeCalc() {
+    this.isOpen = false;
   }
 }

@@ -353,8 +353,7 @@
         <span>Fixed Sci-Calculator</span>
       </div>
     </div>
-    <lib-ngx-sci-calculator [open]="isFixedOpen" [fixedLayout]="true" (onClose)="closeFixedCalc()"></lib-ngx-sci-calculator>
-    <lib-ngx-sci-calculator [open]="isOpen" (onClose)="closeInlineCalc()"></lib-ngx-sci-calculator>
+    <lib-ngx-sci-calculator [open]="isOpen" [fixedLayout]="isFixedOpen" (onClose)="closeCalc()"></lib-ngx-sci-calculator>
 </div>
 
 <router-outlet></router-outlet>
