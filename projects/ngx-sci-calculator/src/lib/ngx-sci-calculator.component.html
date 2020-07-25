@@ -1,0 +1,264 @@
+<div id="dragEleheader" class="oscMain" [ngClass]="{'fixed': fixedLayout, 'hide' : !open}">
+  <div class="oscCaption">ENGINEERING CALCULATOR</div>
+  <div class="oscClose">
+    <button matSuffix (click)="closeCalc()">x</button>
+  </div>
+  <!-- <div class="oscModel">Calyxpod-2020</div> -->
+  <div class="oscSpacer2"></div>
+
+  <!-- EXT PANEL CONTROL BUTTON-->
+  <!-- <div class="oscExtControl" title="Open/Close extended functions panel" style="opacity: 1;" (click)="onExtControlClick()">
+    <span *ngIf="!isExtPanelVisible">&#9660;</span>
+    <span *ngIf="isExtPanelVisible">&#9650;</span>
+  </div> -->
+  <!-- STACK CONTROL BUTTON-->
+  <!-- <div class="oscStackControl"
+        (mouseover)="onStackMouseOver($event)"
+        (mouseout)="onStackMouseOut($event)"
+        (mouseleave)="onStackMouseOut($event)">S</div>
+  <div class="oscSpacer3"></div> -->
+  <!--USER INPUT-->
+  <div id="keyPad">
+
+    <!-- STACK PANEL OVER USER INPUT BOX-->
+    <div class="oscStackRegister" title="Show the Stack Register" #stackRegister [ngClass]="{'show-stack': showStack}">STACK</div>
+    <div class="oscSpacer2"></div>
+
+    <!-- USER INPUT BOX - MAIN-->
+    <button id="keyPad_btnToMem" class="keyPad_btnMemOp" (click)="clickBtnMemOp($event)" type="button" title="Copy value to Memory">⇩</button>
+    <input type="text" id="keyPad_UserInput" class="keyPad_TextBox" (click)="clickTextBox($event)" maxlength="10" readonly="">
+    <div class="oscSpacer3"></div>
+
+    <!-- MEMORY TO/FROM-->
+    <button id="keyPad_btnFromMem" class="keyPad_btnMemOp" (click)="clickBtnMemOp($event)" type="button" title="Read from Memory">⇧</button>
+
+    <!--MEMORY BOX-->
+    <input type="text" id="keyPad_Mem" class="keyPad_TextBox" (click)="clickTextBox($event)" value="M" readonly=""
+      title="Click on to clear the Memory">
+    <div class="oscSpacer3"></div>
+    <div class="oscSpacer3"></div>
+
+    <!--ACTION COMMAND ROW--->
+
+    <button id="keyPad_btnEnter" class="keyPad_btnCommand" (click)="clickBtnCommand($event)" type="button" title="Calculate">=</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnMemPlus" class="keyPad_btnMemOp" (click)="clickBtnMemOp($event)" type="button" title="Add to Memory">M+</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnMemMinus" class="keyPad_btnMemOp" (click)="clickBtnMemOp($event)" type="button" title="Subtract from Memory">M-</button>
+    <div class="div-left-button">
+      <!--ROW-LEFT-->
+      <button id="keyPad_btnBack" class="keyPad_btnCommand" (click)="clickBtnCommand($event)" type="button" title="Erase the Last Character">◄</button>
+      <button id="keyPad_btnClr" class="keyPad_btnCommand" (click)="clickBtnCommand($event)" type="button"
+        title="Clear Register; keep Last Operation and Stack intact">C</button>
+      <button id="keyPad_btnAllClr" class="keyPad_btnCommand" (click)="clickBtnCommand($event)" type="button"
+        title="Clear Register, Last Operation and Stack">AC</button>
+    </div>
+    <div class="clear"></div>
+    <div class="oscSpacer3"></div>
+    <div class="oscSpacer3"></div>
+    <div class="oscSpacer3"></div>
+
+    <!--1st ROW-RIGHT-->
+    <button id="keyPad_btnDiv" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button">÷</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnMult" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button">x</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnMinus" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button">-</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnPlus" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button">+</button>
+    <div class="oscVSpacer3"></div>
+    <!--1st ROW-LEFT-->
+    <div class="div-left-button">
+      <button id="keyPad_btn7" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">7</button>
+      <button id="keyPad_btn8" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">8</button>
+      <button id="keyPad_btn9" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">9</button>
+      <div class="oscSpacer2"></div>
+    </div>
+
+    <!--2nd ROW-RIGHT-->
+    <button id="keyPad_btnSquareRoot" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">√</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnSquare" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">x<sup>2</sup></button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnPercent" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button">%</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnInverseSign" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">+/-</button>
+    <!--2nd ROW-LEFT-->
+    <div class="div-left-button">
+      <button id="keyPad_btn4" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">4</button>
+      <button id="keyPad_btn5" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">5</button>
+      <button id="keyPad_btn6" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">6</button>
+      <div class="oscSpacer2"></div>
+    </div>
+    <!--3rd ROW-RIGHT-->
+    <button id="keyPad_btnLn" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">ln</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnLg" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">lg</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnYpowX" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button">y<sup>x</sup></button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnExp" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">e<sup>x</sup></button>
+    <!--3rd ROW-LEFT-->
+    <div class="div-left-button">
+      <button id="keyPad_btn1" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">1</button>
+      <button id="keyPad_btn2" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">2</button>
+      <button id="keyPad_btn3" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">3</button>
+      <div class="oscSpacer2"></div>
+    </div>
+    <!--4th ROW-RIGHT-->
+    <button id="keyPad_btnCosin" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">cos</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnSin" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">sin</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnTg" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">tan</button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnInverse" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">1/x</button>
+    <!--4th ROW-LEFT-->
+    <div class="div-left-button">
+      <button id="keyPad_btn0" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">0</button>
+      <button id="keyPad_btnDot" class="keyPad_btnNumeric" (click)="clickNumeric($event)" type="button">.</button>
+      <button id="keyPad_btnPi" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">π</button>
+      <div class="oscSpacer3"></div>
+    </div>
+
+    <div style="text-align: center">
+        <button *ngIf="!isExtPanelVisible" class="open-drawer-icon" (click)="onExtControlClick()">v</button>
+        <button *ngIf="isExtPanelVisible" class="open-drawer-icon" (click)="onExtControlClick()">^</button>
+    </div>
+    <!-- EXTENDER PANEL-->
+    <div class="voltExtPanel" #voltExtPanel>
+      <!-- ---------EXTRA ROWS---------  -->
+      <!--x1-RIGHT-->
+      <button id="keyPad_btnZL50" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button"
+        title="Inductive Impedance at 50 Hz">Z<sub>L</sub><sup>50</sup></button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnZC50" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button"
+        title="Capacitive Impedance at 50 Hz">Z<sub>C</sub><sup>50</sup></button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnZL" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button"
+        title="Inductive Impedance at 60 Hz">Z<sub>L</sub><sup>60</sup></button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnZC" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button"
+        title="Capacitive Impedance at 60 Hz">Z<sub>C</sub><sup>60</sup></button>
+      <!--LEFT-->
+      <div class="div-left-button">
+        <button id="keyPad_btnKilo" class="keyPad_btnPrefix" (click)="clickBtnPrefix($event)" type="button" title="MULTIPLY: x1,000">*k</button>
+        <button id="keyPad_btnMega" class="keyPad_btnPrefix" (click)="clickBtnPrefix($event)" type="button" title="MULTIPLY: x1,000,000">*M</button>
+        <button id="keyPad_btnGiga" class="keyPad_btnPrefix" (click)="clickBtnPrefix($event)" type="button" title="MULTIPLY: x1,000,000,000">*G</button>
+        <div class="oscSpacer3"></div>
+      </div>
+      <!--x2-RIGHT-->
+      <button id="keyPad_btnFLC" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button"
+        title="Resonance Frequence of LC circuit">F<sub>LC</sub></button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnW2F" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button"
+        title="Angualar to Cyclic Frequency">ω►F</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnF2W" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button"
+        title="Cyclic to Angualar Frequency">F►ω</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnRR" class="keyPad_btnBinaryOp" (click)="clickBtnBinaryOp($event)" type="button" title="2 Resistors in Parallel">R||r</button>
+      <!--LEFT-->
+      <div class="div-left-button">
+        <button id="keyPad_btnMilli" class="keyPad_btnPrefix" (click)="clickBtnPrefix($event)" type="button" title="DIVIDE by: 1,000">*m</button>
+        <button id="keyPad_btnMicro" class="keyPad_btnPrefix" (click)="clickBtnPrefix($event)" type="button" title="DIVIDE by: 1,000,000">*μ</button>
+        <button id="keyPad_btnNano" class="keyPad_btnPrefix" (click)="clickBtnPrefix($event)" type="button" title="DIVIDE by: 1,000,000,000">*n</button>
+        <div class="oscSpacer3"></div>
+      </div>
+
+      <!--x3-RIGHT-->
+      <button id="keyPad_btnAsin" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">asin</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnAcos" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">acos</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnAtan" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">atan</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnOnePlusX" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">1+x</button>
+      <!--LEFT-->
+      <div class="div-left-button">
+        <button id="keyPad_btnPiDiv2" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">π/2</button>
+        <button id="keyPad_btnPiDiv3" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">π/3</button>
+        <button id="keyPad_btnPiDiv4" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">π/4</button>
+        <div class="oscSpacer2"></div>
+      </div>
+
+      <!--x4-RIGHT-->
+      <button id="keyPad_btnCosinH" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">cosh</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnSinH" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">sinh</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnTgH" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">tanh</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnOneMinusX" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">1-x</button>
+      <!--LEFT-->
+      <div class="div-left-button">
+        <button id="keyPad_btnE" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">e</button>
+        <button id="keyPad_btnInvE" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">1/e</button>
+        <button id="keyPad_btnLgE" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">lg(e)</button>
+        <div class="oscSpacer2"></div>
+      </div>
+      <!--x5-RIGHT-->
+      <button id="keyPad_btnCosecH" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">csch</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnSecH" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">sech</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnCosec" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">csc</button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnSec" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">sec</button>
+      <!--LEFT-->
+      <div class="div-left-button">
+        <button id="keyPad_btnSigma" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">σ</button>
+        <button id="keyPad_btnSigma3" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">3σ</button>
+        <button id="keyPad_btnSigma6" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">6σ</button>
+        <div class="oscSpacer2"></div>
+      </div>
+      <!--x6-RIGHT-->
+      <!-- <button id="keyPad_btnCube" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">x<sup>3</sup></button>
+      <div class="oscVSpacer3"></div>
+      <button id="keyPad_btnCubeRoot" class="keyPad_btnUnaryOp" (click)="clickBtnUnaryOp($event)" type="button">∛</button>
+      <div class="oscVSpacer3"></div> -->
+      <!--RESERVED BTN-->
+      <!-- <button id="keyPad_btnReserved1" class="keyPad_btnAdRight" type="button"
+        onclick="window.open('/Volta/Volta_Manual.pdf', '_blank');">MANUAL</button> -->
+      <!--LEFT-->
+      <!-- <div class="div-left-button">
+        <button id="keyPad_btnSqrt2" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">√2</button>
+        <button id="keyPad_btnSqrt3" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">√3</button>
+        <button id="keyPad_btnCubeRoot2" class="keyPad_btnConst" (click)="clickBtnConst($event)" type="button">∛2</button>
+      </div>
+      <div class="oscSpacer2"></div> -->
+    </div>
+    <!-- <div class="oscSpacer3"></div> -->
+
+    <!--ROW E-SERIES-->
+    <!-- <button id="keyPad_btnCe" class="keyPad_btnESeries" type="button"
+      title="Close E-Series Tables">CL<sub>E</sub></button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnE192" class="keyPad_btnESeries" type="button"
+      title="Click to open E192 Standard Series table (RLC)">E<sub>192</sub></button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnE96" class="keyPad_btnESeries" type="button"
+      title="Click to open E96 Standard Series table (RLC)">E<sub>96</sub></button>
+    <div class="oscVSpacer3"></div>
+    <button id="keyPad_btnE48" class="keyPad_btnESeries" type="button"
+      title="Click to open E48 Standard Series table (RLC)">E<sub>48</sub></button> -->
+    <!--LEFT-->
+      <!-- <div class="div-left-button">
+        <button id="keyPad_btnE6" class="keyPad_btnESeries" type="button"
+          title="Click to open E6 Standard Series table (RLC)">E<sub>6</sub></button>
+        <button id="keyPad_btnE12" class="keyPad_btnESeries" type="button"
+          title="Click to open E12 Standard Series table (RLC)">E<sub>12</sub></button>
+        <button id="keyPad_btnE24" class="keyPad_btnESeries" type="button"
+          title="Click to open E24 Standard Series table (RLC)">E<sub>24</sub></button>
+      </div>
+      <div class="oscSpacer5"></div> -->
+
+    <!-- E-SERIES TAB-->
+    <div class="voltESeries">
+      <table id="refTabESeries" class="tabESeries"></table>
+    </div>
+  </div>
+  <!-- <div class="oscCopyright">© 2020 Calyxpod</div>
+  <div class="oscMade">Made in India</div> -->
+  <div class="clear"></div>
+</div>

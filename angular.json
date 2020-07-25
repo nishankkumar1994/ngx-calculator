@@ -1,0 +1,171 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "ngx-sci-calc": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "projects/ngx-sci-calc",
+      "sourceRoot": "projects/ngx-sci-calc/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/ngx-sci-calc",
+            "index": "projects/ngx-sci-calc/src/index.html",
+            "main": "projects/ngx-sci-calc/src/main.ts",
+            "polyfills": "projects/ngx-sci-calc/src/polyfills.ts",
+            "tsConfig": "projects/ngx-sci-calc/tsconfig.app.json",
+            "aot": true,
+            "assets": [
+              "projects/ngx-sci-calc/src/favicon.ico",
+              "projects/ngx-sci-calc/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-sci-calc/src/styles.scss"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/ngx-sci-calc/src/environments/environment.ts",
+                  "with": "projects/ngx-sci-calc/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "ngx-sci-calc:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "ngx-sci-calc:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "ngx-sci-calc:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-sci-calc/src/test.ts",
+            "polyfills": "projects/ngx-sci-calc/src/polyfills.ts",
+            "tsConfig": "projects/ngx-sci-calc/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-sci-calc/karma.conf.js",
+            "assets": [
+              "projects/ngx-sci-calc/src/favicon.ico",
+              "projects/ngx-sci-calc/src/assets"
+            ],
+            "styles": [
+              "projects/ngx-sci-calc/src/styles.scss"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-sci-calc/tsconfig.app.json",
+              "projects/ngx-sci-calc/tsconfig.spec.json",
+              "projects/ngx-sci-calc/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/ngx-sci-calc/e2e/protractor.conf.js",
+            "devServerTarget": "ngx-sci-calc:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "ngx-sci-calc:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "ngx-sci-calculator": {
+      "projectType": "library",
+      "root": "projects/ngx-sci-calculator",
+      "sourceRoot": "projects/ngx-sci-calculator/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "projects/ngx-sci-calculator/tsconfig.lib.json",
+            "project": "projects/ngx-sci-calculator/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/ngx-sci-calculator/tsconfig.lib.prod.json"
+            }
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/ngx-sci-calculator/src/test.ts",
+            "tsConfig": "projects/ngx-sci-calculator/tsconfig.spec.json",
+            "karmaConfig": "projects/ngx-sci-calculator/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/ngx-sci-calculator/tsconfig.lib.json",
+              "projects/ngx-sci-calculator/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }},
+  "cli": {
+    "analytics": "9ce906cc-ed9c-466b-86b9-6ea500a8debf"
+  },
+  "defaultProject": "ngx-sci-calc"
+}
