@@ -9,6 +9,7 @@ export class AppComponent {
   title = 'ngx-sci-calc';
   isOpen=false;
   isFixedOpen=false;
+  isDraggable = false;
   openInlineCalc() {
     this.isFixedOpen = false;
     this.isOpen = true;
@@ -19,5 +20,9 @@ export class AppComponent {
   }
   closeCalc() {
     this.isOpen = false;
+  }
+  draggableToggle(e) {
+    console.log('---', e.target.checked);
+    this.isDraggable = e.target.checked;
   }
 }

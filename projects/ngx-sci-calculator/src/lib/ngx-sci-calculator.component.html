@@ -1,4 +1,4 @@
-<div id="dragEleheader" class="oscMain" [ngClass]="{'fixed': fixedLayout, 'hide' : !open}">
+<div id="dragEleheader" class="oscMain" [ngClass]="{'fixed': fixedLayout, 'hide' : !open}" cdkDrag [cdkDragDisabled]="!draggable">
   <div class="oscCaption">ENGINEERING CALCULATOR</div>
   <div class="oscClose">
     <button matSuffix (click)="closeCalc()">x</button>
@@ -122,8 +122,8 @@
     </div>
 
     <div style="text-align: center">
-        <button *ngIf="!isExtPanelVisible" class="open-drawer-icon" (click)="onExtControlClick()">v</button>
-        <button *ngIf="isExtPanelVisible" class="open-drawer-icon" (click)="onExtControlClick()">^</button>
+        <button *ngIf="!isExtPanelVisible" (click)="onExtControlClick()">v</button>
+        <button *ngIf="isExtPanelVisible" (click)="onExtControlClick()">^</button>
     </div>
     <!-- EXTENDER PANEL-->
     <div class="voltExtPanel" #voltExtPanel>

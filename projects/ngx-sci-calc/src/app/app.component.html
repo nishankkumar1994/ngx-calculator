@@ -353,7 +353,9 @@
         <span>Fixed Sci-Calculator</span>
       </div>
     </div>
-    <lib-ngx-sci-calculator [open]="isOpen" [fixedLayout]="isFixedOpen" (onClose)="closeCalc()"></lib-ngx-sci-calculator>
+    <input type="checkbox" (change)="draggableToggle($event)" />
+    Draggeable
+    <lib-ngx-sci-calculator [open]="isOpen" [draggable]="isDraggable" [fixedLayout]="isFixedOpen" (onClose)="closeCalc()"></lib-ngx-sci-calculator>
 </div>
 
 <router-outlet></router-outlet>
